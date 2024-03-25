@@ -1,6 +1,7 @@
 plugins {
-    alias(libs.plugins.androidApplication)
+    id("com.android.library")
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-android")
 }
 
 android {
@@ -8,12 +9,8 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.namchok.home"
         minSdk = 28
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -22,7 +19,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }

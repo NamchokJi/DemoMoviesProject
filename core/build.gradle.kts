@@ -1,19 +1,14 @@
 plugins {
-    alias(libs.plugins.androidApplication)
+    id("com.android.library")
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-android")
 }
 
 android {
-    namespace = "com.namchok.demomoviesproject.network"
+    namespace = "com.namchok.core"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.namchok.demomoviesproject.network"
-        minSdk = 28
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

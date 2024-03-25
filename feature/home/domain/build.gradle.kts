@@ -1,5 +1,6 @@
 plugins {
-    alias(libs.plugins.androidApplication)
+    id("com.android.library")
+    id("kotlin-android")
     alias(libs.plugins.jetbrainsKotlinAndroid)
 }
 
@@ -8,12 +9,8 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.namchok.domain"
         minSdk = 28
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -22,7 +19,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -33,14 +30,12 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    api(project(":core:common"))
+    api(project(":feature:home:data"))
 }

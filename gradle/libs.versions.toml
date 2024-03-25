@@ -1,6 +1,7 @@
 [versions]
 agp = "8.3.0-beta02"
-kotlin = "1.9.0"
+kotlin = "1.8.10"
+secret = "0.2.1"
 coreKtx = "1.12.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -26,6 +27,7 @@ chucker = "3.5.2"
 navigation = "2.7.7"
 activity = "1.8.0"
 constraintlayout = "2.1.4"
+splashscreen = "1.0.1"
 
 [libraries]
 # Core
@@ -37,6 +39,7 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashscreen" }
 
 # Koin
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
@@ -79,3 +82,4 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+secret = { id = "com.klaxit.hiddensecrets", version.ref = "secret" }

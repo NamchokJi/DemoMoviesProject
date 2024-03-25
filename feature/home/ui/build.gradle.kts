@@ -1,5 +1,6 @@
 plugins {
-    alias(libs.plugins.androidApplication)
+    id("com.android.library")
+    id("kotlin-android")
     alias(libs.plugins.jetbrainsKotlinAndroid)
 }
 
@@ -8,12 +9,8 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.namchok.ui"
         minSdk = 28
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -22,8 +19,11 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
+        }
+        debug {
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
         }
     }
     compileOptions {
@@ -33,14 +33,28 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        compose = true
+        buildConfig = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.3"
+    }
 }
 
 dependencies {
+    api(project(":core:common"))
+    api(project(":core:resource"))
+    api(project(":feature:home:domain"))
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.activity.compose)
+    implementation(libs.viewmodel.compose)
+    implementation(libs.runtime.compose)
+    implementation(libs.compose.ui)
+    platform(libs.compose.bom)
+    implementation(libs.compose.ui.graphics)
+    implementation(libs.compose.preview)
+    implementation(libs.compose.material3)
+    implementation(libs.navigation.compose)
+    implementation(libs.coil.compose)
 }

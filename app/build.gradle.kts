@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-android")
 }
 
 android {
@@ -34,26 +35,20 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        compose = true
+        buildConfig = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.3"
+    }
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.multidex)
-    implementation(libs.gson)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
-
-    compileOnly(libs.koin.core)
-    implementation(libs.koin.core.jvm)
-    implementation(libs.koin.android)
-    implementation(libs.koin.android.compat)
-    implementation(libs.koin.navigation)
-    implementation(libs.koin.compose)
-    implementation(libs.koin.work.manager)
-    implementation(libs.koin.test)
-
+    api(project(":core:common"))
+    implementation(project(":core:network"))
+    implementation(project(":core:resource"))
+    api(project(":feature:home:ui"))
     implementation(libs.activity.compose)
     implementation(libs.viewmodel.compose)
     implementation(libs.runtime.compose)
@@ -64,18 +59,5 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.navigation.compose)
     implementation(libs.coil.compose)
-
-    implementation(libs.coroutines)
-    implementation(libs.retrofit)
-    implementation(libs.logging.interceptor)
-    implementation(libs.retrofit.gson)
-    implementation(libs.chucker.debug)
-
-    implementation(libs.navigation.fragment)
-    implementation(libs.navigation.ui.kit)
-    implementation(libs.navigation.dynamic.features)
-
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.splashscreen)
 }
